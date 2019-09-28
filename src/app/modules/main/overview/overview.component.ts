@@ -92,7 +92,7 @@ export class OverviewComponent implements OnInit, OnDestroy
     send(message: string): void
     {
         console.log(message);
-        this.api.send(this.selectedChat.id, message);
+        this.api.send(this.selectedChat.id, message).subscribe(value => console.log(value));
     }
 
     ngOnDestroy(): void
