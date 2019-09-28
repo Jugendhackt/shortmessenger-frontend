@@ -1,0 +1,12 @@
+<div id="themeContainer">
+    <mat-drawer-container autosize>
+        <mat-drawer [mode]="mobile ? 'over' : 'side'" [opened]="sidebarOpen">
+
+        </mat-drawer>
+        <mat-drawer-content class="dashboardContent">
+            <div class="routerOutlet">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>
