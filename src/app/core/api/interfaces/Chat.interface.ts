@@ -7,4 +7,5 @@ export interface Chat extends Base
     messages: Array<Message>
     name: string
     users: Array<string>
+    last: number
 }

@@ -2,7 +2,7 @@
     <mat-drawer-container autosize>
         <mat-drawer [mode]="mobile ? 'over' : 'side'" [opened]="sidebarOpen">
             <mat-list>
-                <div *ngFor="let group of groups">
+                <div *ngFor="let group of groups | sortBy:'desc': 'last'">
                     <app-group [chat]="group"></app-group>
                 </div>
             </mat-list>

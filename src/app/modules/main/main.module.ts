@@ -14,13 +14,15 @@ import {
 import {GroupComponent} from './group/group.component';
 import { GroupChatComponent } from './group-chat/group-chat.component';
 import { MessageComponent } from './message/message.component';
+import { SortByPipe } from 'src/app/sort.pipe';
 
 @NgModule({
     declarations: [
         OverviewComponent,
         GroupComponent,
         GroupChatComponent,
-        MessageComponent
+        MessageComponent,
+        SortByPipe
     ],
     exports: [
         OverviewComponent
