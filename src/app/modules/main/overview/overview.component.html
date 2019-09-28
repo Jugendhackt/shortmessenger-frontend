@@ -7,10 +7,14 @@
                 </div>
             </mat-list>
         </mat-drawer>
-        <mat-drawer-content class="dashboardContent">
+        <mat-drawer-content>
             <div class="routerOutlet">
                 <app-group-chat [chat]="selectedChat"></app-group-chat>
             </div>
+
+            <mat-form-field class="input">
+                <input (keydown.enter)="send(inputElement.value); inputElement.value = ''" #inputElement matInput placeholder="Send as 'user'" value="">
+            </mat-form-field>
         </mat-drawer-content>
     </mat-drawer-container>
 </div>

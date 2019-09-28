@@ -19,13 +19,13 @@ export class OverviewComponent implements OnInit, OnDestroy
 
     private subscriptions: Array<any>;
 
+    private selectFirstGroup: boolean = true;
+
     constructor(private values: ValuesService, private api: Api)
     {
         this.darkMode = false;
         this.sidebarOpen = true;
         this.mobile = false;
-
-        console.log(this.groups);
 
         this.selectedChat = null;
 
@@ -75,15 +75,24 @@ export class OverviewComponent implements OnInit, OnDestroy
             this.selectedChat = this.values.getSelectedChat();
         }));
 
-        this.subscriptions.push(this.api.send('3e1yro73', 'test').subscribe((array) => console.log(array)));
+        //Subscribe to api response
         this.subscriptions.push(this.api.read().subscribe((array) =>
         {
             this.groups = array;
-            console.log(array);
-            this.values.setSelectedChat(this.groups[1])
+
+            if(this.selectFirstGroup)
+            {
+                this.values.setSelectedChat(this.groups[0]);
+
+                this.selectFirstGroup = false;
+            }
         }));
+    }
 
-
+    send(message: string): void
+    {
+        console.log(message);
+        this.api.send(this.selectedChat.id, message);
     }
 
     ngOnDestroy(): void

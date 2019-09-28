@@ -1,4 +1,4 @@
-<mat-card *ngFor="let message of chat.messages">
+<mat-card *ngFor="let message of chat.messages" class="message">
     <div *ngIf="isMessageUser(message)" class="selfsend">
         <mat-card-title>
             {{message}}
@@ -16,8 +16,3 @@
         </mat-card-subtitle>
     </div>
 </mat-card>
-
-
-<mat-form-field>
-    <input matInput placeholder="Send as 'user'" value="">
-</mat-form-field>
