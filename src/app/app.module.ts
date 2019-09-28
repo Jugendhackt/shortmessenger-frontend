@@ -3,8 +3,10 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
-import { OverviewComponent } from './modules/main/overview/overview.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {OverviewComponent} from './modules/main/overview/overview.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterModule} from '@angular/router';
+import {MatSidenavModule} from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -14,7 +16,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     imports: [
         BrowserModule,
         CoreModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        RouterModule
     ],
     providers: [],
     bootstrap: [AppComponent]
