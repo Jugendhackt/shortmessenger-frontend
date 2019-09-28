@@ -1,20 +1,22 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-    providedIn: 'root'
+	providedIn: 'root'
 })
 
-export class Api
-{
-    private apiUrl = 'https://jhffm19-shn.nwng.eu';
+export class Api {
+	private apiUrl = 'https://jhffm19-shm.nwng.eu/api/';
 
-    constructor(private http: HttpClient)
-    {
-    }
+	constructor(private http: HttpClient) {
+	
+	}
 
-    public testConnection()
-    {
-		this.http.get(this.apiUrl).subscribe((value => console.log(value)))
-    }
+	testConnection() {
+		this.http.get(this.apiUrl).toPromise().then((observable) => {
+			console.log(observable);
+		}).catch(e => {
+			console.warn(e);
+		});
+	}
 }
