@@ -7,7 +7,7 @@
                 </div>
             </mat-list>
 
-            <button mat-flat-button (click)="logout()">Logout</button>
+            <button mat-flat-button (click)="logout()" id="logoutBtn">Logout</button>
         </mat-drawer>
         <mat-drawer-content id="chatWindow">
             <div class="routerOutlet">
@@ -16,7 +16,7 @@
 
             <mat-form-field class="input">
                 <mat-toolbar>
-                    <input (keydown.enter)="send(inputElement.value); inputElement.value = ''" #inputElement matInput placeholder="Send as {{username}}" value="" autocomplete="off">
+                    <input (keydown.enter)="send(inputElement.value); inputElement.value = ''" #inputElement matInput placeholder="Send as {{username}}" value="" autocomplete="off" id="messageInput">
                 </mat-toolbar>
             </mat-form-field>
         </mat-drawer-content>

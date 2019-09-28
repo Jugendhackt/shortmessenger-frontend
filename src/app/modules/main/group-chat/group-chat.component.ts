@@ -75,4 +75,8 @@ export class GroupChatComponent implements OnInit
         // or alternatively
         // return text.replace(urlRegex, '<a href="$1">$1</a>')
     }
+
+    addMentionToMessage(name:string) {
+        (<HTMLInputElement> document.querySelectorAll("mat-toolbar input")[0]).value += "@" + name;
+    }
 }
