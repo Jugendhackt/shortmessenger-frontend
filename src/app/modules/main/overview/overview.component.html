@@ -18,6 +18,7 @@
                 <mat-toolbar>
                     <input (keydown.enter)="send(inputElement.value); inputElement.value = ''" #inputElement matInput placeholder="Send as {{username}}" value="" autocomplete="off" id="messageInput">
                 </mat-toolbar>
+                <mat-error>Test</mat-error>
             </mat-form-field>
         </mat-drawer-content>
     </mat-drawer-container>
