@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ValuesService} from '../../../core/services/values.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {ValuesService} from '../../../core/services/values.service';
     templateUrl: './overview.component.html',
     styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit
+export class OverviewComponent implements OnInit, OnDestroy
 {
     private darkMode: boolean;
     private sidebarOpen: boolean;
@@ -70,7 +70,7 @@ export class OverviewComponent implements OnInit
     {
         if(this.values.getSessionStart())
         {
-            this.values.subSnackbar().next('PureCore Dashboard launched');
+            this.values.subSnackbar().next('ShortMessenger launched');
             this.values.endSessionStart();
         }
 

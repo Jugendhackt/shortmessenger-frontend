@@ -7,7 +7,7 @@ import {Subject} from 'rxjs';
 export class ValuesService
 {
     private darkModeSubject: Subject<void> = new Subject<void>();
-    private darkMode: boolean = true;
+    private darkMode: boolean = false;
 
     private snackbarSubject: Subject<string> = new Subject<string>();
 

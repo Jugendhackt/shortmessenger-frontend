@@ -3,24 +3,26 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
-import {OverviewComponent} from './modules/main/overview/overview.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
-import {MatSidenavModule} from '@angular/material';
+import {MainModule} from './modules/main/main.module';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        OverviewComponent
+        AppComponent
     ],
     imports: [
         BrowserModule,
         CoreModule,
         BrowserAnimationsModule,
-        MatSidenavModule,
-        RouterModule
+        RouterModule,
+        MainModule,
+        MatSnackBarModule
     ],
-    providers: [],
+    providers: [
+        MatSnackBar
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule
