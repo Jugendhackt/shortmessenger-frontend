@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Read} from './interfaces/Read.interface';
 import {User} from './interfaces/User.interface';
 import {Message} from './interfaces/Message.interface';
 import {Observable} from 'rxjs';
 import {Chat} from './interfaces/Chat.interface';
+import {ValuesService} from '../services/values.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +14,7 @@ export class Api
 {
     private apiUrl = 'https://jhffm19-shm.nwng.eu/api/index.php';
 
-    constructor(private http: HttpClient)
+    constructor(private http: HttpClient, private values: ValuesService)
     {
 
     }
@@ -34,8 +34,8 @@ export class Api
     {
         let params = new HttpParams()
             .set('action', 'read')
-            .set('username', 'admin')
-            .set('password', 'admin');
+            .set('username', this.values.getUsername())
+            .set('password', this.values.getPassword());
 
         return this.http.get<Array<Chat>>(this.apiUrl, {params});
     }
@@ -44,8 +44,8 @@ export class Api
     {
         let params = new HttpParams()
             .set('action', 'send')
-            .set('username', 'admin')
-            .set('password', 'admin');
+            .set('username', this.values.getUsername())
+            .set('password', this.values.getPassword());
 
         let body = new FormData()
             body.append("chatId", chatId)
@@ -58,8 +58,8 @@ export class Api
     {
         let params = new HttpParams()
             .set('action', 'info')
-            .set('username', 'admin')
-            .set('password', 'admin');
+            .set('username', this.values.getUsername())
+            .set('password', this.values.getPassword());
 
         return this.http.get<User>(this.apiUrl, {params});
     }
