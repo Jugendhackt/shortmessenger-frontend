@@ -1,12 +1,13 @@
 <mat-card *ngFor="let message of chat.messages" class="message">
     <div *ngIf="isMessageUser(message)" class="selfsend">
         <mat-card-title>
-            {{message}}
+            {{message.content}}
         </mat-card-title>
         <mat-card-subtitle>
             you
         </mat-card-subtitle>
     </div>
+
     <div *ngIf="!isMessageUser(message)" class="othersend">
         <mat-card-title>
             {{message.content}}

@@ -4,7 +4,9 @@ import {OverviewComponent} from './overview/overview.component';
 import {MainRoutingModule} from './main-routing.module';
 import {
     MatButtonModule,
-    MatCardModule, MatFormFieldModule, MatInputModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatListModule,
     MatRippleModule,
     MatSidenavModule,
@@ -12,16 +14,14 @@ import {
     MatTooltipModule
 } from '@angular/material';
 import {GroupComponent} from './group/group.component';
-import { GroupChatComponent } from './group-chat/group-chat.component';
-import { MessageComponent } from './message/message.component';
-import { SortByPipe } from 'src/app/sort.pipe';
+import {GroupChatComponent} from './group-chat/group-chat.component';
+import {SortByPipe} from 'src/app/sort.pipe';
 
 @NgModule({
     declarations: [
         OverviewComponent,
         GroupComponent,
         GroupChatComponent,
-        MessageComponent,
         SortByPipe
     ],
     exports: [
