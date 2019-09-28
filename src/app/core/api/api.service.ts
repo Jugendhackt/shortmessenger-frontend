@@ -47,10 +47,9 @@ export class Api
             .set('username', this.values.getUsername())
             .set('password', this.values.getPassword());
 
-        let body = {
-            chatId: chatId,
-            message: message
-        };
+        let body = new FormData()
+            body.append("chatId", chatId)
+            body.append("message", message)
 
         return this.http.post<Message>(this.apiUrl, body, {params});
     }
