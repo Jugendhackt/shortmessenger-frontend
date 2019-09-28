@@ -1,5 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ValuesService} from '../../../core/services/values.service';
+import {Api} from '../../../core/api/api.service';
+import {Group} from '../../../core/api/interfaces/Group.interface';
 
 @Component({
     selector: 'app-overview',
@@ -12,13 +14,23 @@ export class OverviewComponent implements OnInit, OnDestroy
     private sidebarOpen: boolean;
     private mobile: boolean;
 
+    private groups: Array<Group>;
+    private selectedChat;
+
     private subscriptions: Array<any>;
 
-    constructor(private values: ValuesService)
+    constructor(private values: ValuesService, private api: Api)
     {
         this.darkMode = false;
         this.sidebarOpen = true;
         this.mobile = false;
+
+        this.groups = new Array<Group>();
+        this.groups.push({name: 'group1', users: ['admin', 'user']});
+
+        console.log(this.groups);
+
+        this.selectedChat = null;
 
         this.subscriptions = new Array<any>();
     }
@@ -34,6 +46,9 @@ export class OverviewComponent implements OnInit, OnDestroy
 
         //Load mobile on init
         this.mobile = this.values.getMobile();
+
+        //Load selectedChat on init
+        this.selectedChat = this.values.getSelectedChat();
 
         //Subscribe to appearance changes
         this.subscriptions.push(this.values.subDarkMode().subscribe(() =>
@@ -56,6 +71,14 @@ export class OverviewComponent implements OnInit, OnDestroy
                 document.getElementsByClassName('noSelect').item(i).addEventListener('contextmenu', event => event.preventDefault());
             }
         }));
+
+        //Subscribe to selected chat changes
+        this.subscriptions.push(this.values.subSelectedChat().subscribe(() =>
+        {
+            this.selectedChat = this.values.getSelectedChat();
+        }));
+
+        //TODO: this.api.read().subscribe((array) => this.groups = array)
     }
 
     ngOnDestroy(): void

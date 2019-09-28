@@ -1,4 +1,5 @@
-export interface Filter {
+export interface Filter
+{
     minTime: number,
     maxTime: number,
     allowEmoji: boolean,

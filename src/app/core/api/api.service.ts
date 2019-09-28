@@ -1,32 +1,41 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Chat } from './interfaces/Chat.interface';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Chat} from './interfaces/Chat.interface';
+import {Observable} from 'rxjs';
 
 @Injectable({
-	providedIn: 'root'
+    providedIn: 'root'
 })
 
-export class Api {
-	private apiUrl = 'https://jhffm19-shm.nwng.eu/api';
+export class Api
+{
+    private apiUrl = 'https://jhffm19-shm.nwng.eu/api';
 
-	constructor(private http: HttpClient) {
-	
-	}
+    constructor(private http: HttpClient)
+    {
 
-	testConnection() {
-		this.http.get('https://jhffm19-shm.nwng.eu/').toPromise().then((observable) => {
-			console.log(observable);
-		}).catch(e => {
-			console.warn(e);
-		});
-	}
+    }
 
-	read() {
-		var params = new HttpParams()
-			.set("action", "read")
-			.set("username", "admin")
-			.set("password", "admin")
+    testConnection(): void
+    {
+        this.http.get('https://jhffm19-shm.nwng.eu/').toPromise().then((observable) =>
+        {
+            console.log(observable);
+        }).catch(e =>
+        {
+            console.warn(e);
+        });
+    }
 
-		return this.http.get<Array<Chat>>(this.apiUrl, {params})
-	}
+    read(): Observable<Array<Chat>>
+    {
+        let params = new HttpParams()
+            .set('action', 'read')
+            .set('username', 'admin')
+            .set('password', 'admin');
+
+        console.log(this.apiUrl + '?' + params.toString());
+
+        return this.http.get<Array<Chat>>(this.apiUrl, {params});
+    }
 }

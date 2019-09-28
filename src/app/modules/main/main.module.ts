@@ -2,7 +2,15 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {OverviewComponent} from './overview/overview.component';
 import {MainRoutingModule} from './main-routing.module';
-import {MatCardModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatRippleModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatTooltipModule
+} from '@angular/material';
 import {GroupComponent} from './group/group.component';
 import { GroupChatComponent } from './group-chat/group-chat.component';
 import { MessageComponent } from './message/message.component';
@@ -22,7 +30,11 @@ import { MessageComponent } from './message/message.component';
         MainRoutingModule,
         MatSidenavModule,
         MatCardModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatTooltipModule,
+        MatListModule,
+        MatRippleModule,
+        MatButtonModule
     ]
 })
 export class MainModule

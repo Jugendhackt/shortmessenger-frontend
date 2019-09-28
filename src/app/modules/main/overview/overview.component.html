@@ -1,11 +1,13 @@
 <div id="themeContainer">
     <mat-drawer-container autosize>
         <mat-drawer [mode]="mobile ? 'over' : 'side'" [opened]="sidebarOpen">
-            <!--<app-group *ngFor=""><app-group>-->
+            <mat-list>
+                <app-group *ngFor="let group of groups" [group]="group"></app-group>
+            </mat-list>
         </mat-drawer>
         <mat-drawer-content class="dashboardContent">
             <div class="routerOutlet">
-                <router-outlet></router-outlet>
+                <app-group-chat [chat]="selectedChat"></app-group-chat>
             </div>
         </mat-drawer-content>
     </mat-drawer-container>

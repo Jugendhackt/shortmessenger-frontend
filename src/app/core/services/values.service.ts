@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
+import {Chat} from '../api/interfaces/Chat.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +19,17 @@ export class ValuesService
     private sidebarOpen: boolean = true;
 
     private noSelectSubject: Subject<void> = new Subject<void>();
+
+    private selectedChatSubject: Subject<void> = new Subject<void>();
+    private selectedChat: Chat = {
+        members: ['user', 'admin'],
+        filter: null,
+        messages: [{
+            sender: 'admin',
+            content: 'rofl',
+            time: 0
+        }]
+    };
 
     private sessionStart: boolean = true;
 
@@ -101,5 +113,20 @@ export class ValuesService
     subNoSelect(): Subject<void>
     {
         return this.noSelectSubject;
+    }
+
+    getSelectedChat(): Chat
+    {
+        return this.selectedChat;
+    }
+
+    setSelectedChat(chat: Chat): void
+    {
+        this.selectedChat = chat;
+    }
+
+    subSelectedChat(): Subject<void>
+    {
+        return this.selectedChatSubject;
     }
 }
