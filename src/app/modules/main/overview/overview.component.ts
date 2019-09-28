@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ValuesService} from '../../../core/services/values.service';
 import {Api} from '../../../core/api/api.service';
 import {Chat} from '../../../core/api/interfaces/Chat.interface';
+import { SortByPipe } from 'src/app/sort.pipe';
 
 @Component({
     selector: 'app-overview',
@@ -82,7 +83,13 @@ export class OverviewComponent implements OnInit, OnDestroy
 
             if(this.selectFirstGroup)
             {
-                this.values.setSelectedChat(this.groups[0]);
+                this.values.setSelectedChat(this.groups.sort((a, b) => {
+                    return b.last - a.last;
+                })[0]);
+
+                console.log(this.groups.sort((a, b) => {
+                    return b.last - a.last;
+                }));
 
                 this.selectFirstGroup = false;
             }
