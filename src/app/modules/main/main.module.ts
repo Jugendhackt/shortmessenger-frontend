@@ -11,12 +11,12 @@ import {MatCardModule, MatSidenavModule} from '@angular/material';
     exports: [
         OverviewComponent
     ],
-  imports: [
-    CommonModule,
-    MainRoutingModule,
-    MatSidenavModule,
-    MatCardModule
-  ]
+    imports: [
+        CommonModule,
+        MainRoutingModule,
+        MatSidenavModule,
+        MatCardModule
+    ]
 })
 export class MainModule
 {

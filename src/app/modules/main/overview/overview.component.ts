@@ -86,6 +86,8 @@ export class OverviewComponent implements OnInit, OnDestroy
 
             document.getElementById('themeContainer').classList.remove('lightMode');
             document.getElementById('themeContainer').classList.add('darkMode');
+
+            console.log('Updated theme to darkMode');
         }
         else
         {

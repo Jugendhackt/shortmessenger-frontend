@@ -15,6 +15,6 @@ export class Api
 
     public testConnection()
     {
-		this.http.get(this.apiUrl).subscribe((value => console.log(value)))
+        this.http.get(this.apiUrl).subscribe((value => console.log(value)));
     }
 }
