@@ -1,10 +1,10 @@
-import {Filter} from './Filter.interface';
-import {Message} from './Message.interface';
 import {Base} from './Base.interface';
+import {Message} from './Message.interface';
 
 export interface Chat extends Base
 {
-    members: Array<String>,
-    filter: Filter,
+    id: string
     messages: Array<Message>
+    name: string
+    users: Array<string>
 }

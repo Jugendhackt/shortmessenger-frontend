@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ValuesService} from '../../../core/services/values.service';
 import {Api} from '../../../core/api/api.service';
-import {Group} from '../../../core/api/interfaces/Group.interface';
+import {Chat} from '../../../core/api/interfaces/Chat.interface';
 
 @Component({
     selector: 'app-overview',
@@ -14,7 +14,7 @@ export class OverviewComponent implements OnInit, OnDestroy
     private sidebarOpen: boolean;
     private mobile: boolean;
 
-    private groups: Array<Group>;
+    private groups: Array<Chat>;
     private selectedChat;
 
     private subscriptions: Array<any>;
@@ -24,9 +24,6 @@ export class OverviewComponent implements OnInit, OnDestroy
         this.darkMode = false;
         this.sidebarOpen = true;
         this.mobile = false;
-
-        this.groups = new Array<Group>();
-        this.groups.push({name: 'group1', users: ['admin', 'user']});
 
         console.log(this.groups);
 
@@ -79,6 +76,14 @@ export class OverviewComponent implements OnInit, OnDestroy
         }));
 
         this.subscriptions.push(this.api.send('3e1yro73', 'test').subscribe((array) => console.log(array)));
+        this.subscriptions.push(this.api.read().subscribe((array) =>
+        {
+            this.groups = array;
+            console.log(array);
+            this.values.setSelectedChat(this.groups[1])
+        }));
+
+
     }
 
     ngOnDestroy(): void

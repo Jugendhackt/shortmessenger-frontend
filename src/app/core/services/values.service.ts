@@ -21,13 +21,7 @@ export class ValuesService
     private noSelectSubject: Subject<void> = new Subject<void>();
 
     private selectedChatSubject: Subject<void> = new Subject<void>();
-    private selectedChat: Chat = {
-        members: ['user', 'admin'],
-        filter: null,
-        messages: [{sender: 'admin', content: 'rofl', time: 0}],
-        error: false,
-        errorMsg: ''
-    };
+    private selectedChat: Chat = null;
 
     private sessionStart: boolean = true;
 
@@ -121,6 +115,7 @@ export class ValuesService
     setSelectedChat(chat: Chat): void
     {
         this.selectedChat = chat;
+        this.selectedChatSubject.next();
     }
 
     subSelectedChat(): Subject<void>

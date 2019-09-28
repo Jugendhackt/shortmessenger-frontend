@@ -2,7 +2,9 @@
     <mat-drawer-container autosize>
         <mat-drawer [mode]="mobile ? 'over' : 'side'" [opened]="sidebarOpen">
             <mat-list>
-                <app-group *ngFor="let group of groups" [group]="group"></app-group>
+                <div *ngFor="let group of groups">
+                    <app-group [chat]="group"></app-group>
+                </div>
             </mat-list>
         </mat-drawer>
         <mat-drawer-content class="dashboardContent">

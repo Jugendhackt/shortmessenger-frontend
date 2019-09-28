@@ -4,6 +4,7 @@ import {Read} from './interfaces/Read.interface';
 import {User} from './interfaces/User.interface';
 import {Message} from './interfaces/Message.interface';
 import {Observable} from 'rxjs';
+import {Chat} from './interfaces/Chat.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -29,14 +30,14 @@ export class Api
         });
     }
 
-    read(offset: number = 0): Observable<Read>
+    read(offset: number = 0): Observable<Array<Chat>>
     {
         let params = new HttpParams()
             .set('action', 'read')
             .set('username', 'admin')
             .set('password', 'admin');
 
-        return this.http.get<Read>(this.apiUrl, {params});
+        return this.http.get<Array<Chat>>(this.apiUrl, {params});
     }
 
     send(chatId, message): Observable<Message>

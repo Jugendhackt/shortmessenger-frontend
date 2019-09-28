@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Group} from '../../../core/api/interfaces/Group.interface';
+import {Chat} from '../../../core/api/interfaces/Chat.interface';
+import {ValuesService} from '../../../core/services/values.service';
 
 @Component({
     selector: 'app-group',
@@ -8,9 +9,9 @@ import {Group} from '../../../core/api/interfaces/Group.interface';
 })
 export class GroupComponent implements OnInit
 {
-    @Input() group: Group;
+    @Input() chat: Chat;
 
-    constructor()
+    constructor(private values: ValuesService)
     {
     }
 
@@ -22,11 +23,16 @@ export class GroupComponent implements OnInit
     {
         let output: string = '';
 
-        this.group.users.forEach((user) =>
+        this.chat.users.forEach((user) =>
         {
             output = output.concat(user + ", ");
         });
 
         return output.substring(0, output.length - 2);
+    }
+
+    selectChat(): void
+    {
+        this.values.setSelectedChat(this.chat);
     }
 }
