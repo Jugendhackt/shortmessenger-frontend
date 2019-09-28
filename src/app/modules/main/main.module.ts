@@ -13,7 +13,6 @@ import {
 } from '@angular/material';
 import {GroupComponent} from './group/group.component';
 import { GroupChatComponent } from './group-chat/group-chat.component';
-import { MessageComponent } from './message/message.component';
 import { SortByPipe } from 'src/app/sort.pipe';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { SortByPipe } from 'src/app/sort.pipe';
         OverviewComponent,
         GroupComponent,
         GroupChatComponent,
-        MessageComponent,
         SortByPipe
     ],
     exports: [
