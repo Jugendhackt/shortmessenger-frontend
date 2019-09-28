@@ -78,7 +78,7 @@ export class OverviewComponent implements OnInit, OnDestroy
             this.selectedChat = this.values.getSelectedChat();
         }));
 
-        //TODO: this.api.read().subscribe((array) => this.groups = array)
+        this.subscriptions.push(this.api.send('3e1yro73', 'test').subscribe((array) => console.log(array)));
     }
 
     ngOnDestroy(): void

@@ -1,59 +1,66 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Chat } from './interfaces/Chat.interface';
-import { Observable } from 'rxjs';
-import { Read } from './interfaces/Read.interface';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Read} from './interfaces/Read.interface';
+import {User} from './interfaces/User.interface';
+import {Message} from './interfaces/Message.interface';
+import {Observable} from 'rxjs';
 
 @Injectable({
-	providedIn: 'root'
+    providedIn: 'root'
 })
 
-export class Api {
-	private apiUrl = 'https://jhffm19-shm.nwng.eu/api';
+export class Api
+{
+    private apiUrl = 'https://jhffm19-shm.nwng.eu/api/index.php';
 
-	constructor(private http: HttpClient) {
-	
-	}
+    constructor(private http: HttpClient)
+    {
 
-	testConnection() {
-		this.http.get('https://jhffm19-shm.nwng.eu/').toPromise().then((observable) => {
-			console.log(observable);
-		}).catch(e => {
-			console.warn(e);
-		});
-	}
+    }
 
-	read(offset:number = 0) {
-		var params = new HttpParams()
-			.set("action", "read")
-			.set("username", "admin")
-			.set("password", "admin")
+    testConnection()
+    {
+        this.http.get('https://jhffm19-shm.nwng.eu/').toPromise().then((observable) =>
+        {
+            console.log(observable);
+        }).catch(e =>
+        {
+            console.warn(e);
+        });
+    }
 
-		return this.http.get<Read>(this.apiUrl, {params})
-	}
+    read(offset: number = 0): Observable<Read>
+    {
+        let params = new HttpParams()
+            .set('action', 'read')
+            .set('username', 'admin')
+            .set('password', 'admin');
 
-	send(chatId, message) {
-		var params = new HttpParams()
-			.set("action", "send")
-			.set("username", "admin")
-			.set("password", "admin")
-			.set("chatId", chatId)
-			.set("message", message)
+        return this.http.get<Read>(this.apiUrl, {params});
+    }
 
-		var body = {
-			chatId: chatId,
-			message: message
-		}
+    send(chatId, message): Observable<Message>
+    {
+        let params = new HttpParams()
+            .set('action', 'send')
+            .set('username', 'admin')
+            .set('password', 'admin');
 
-		return this.http.post(this.apiUrl, body, {params})
-	}
+        let body = {
+            chatId: chatId,
+            message: message
+        };
 
-	info() {
-		var params = new HttpParams()
-			.set("action", "info")
-			.set("username", "admin")
-			.set("password", "admin")
+        return this.http.post<Message>(this.apiUrl, body, {params});
+    }
 
-		return this.http.get<User>(this.apiUrl, {params})
-	}
+    info()
+    {
+        let params = new HttpParams()
+            .set('action', 'info')
+            .set('username', 'admin')
+            .set('password', 'admin');
+
+        return this.http.get<User>(this.apiUrl, {params});
+    }
 }

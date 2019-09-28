@@ -24,11 +24,9 @@ export class ValuesService
     private selectedChat: Chat = {
         members: ['user', 'admin'],
         filter: null,
-        messages: [{
-            sender: 'admin',
-            content: 'rofl',
-            time: 0
-        }]
+        messages: [{sender: 'admin', content: 'rofl', time: 0}],
+        error: false,
+        errorMsg: ''
     };
 
     private sessionStart: boolean = true;

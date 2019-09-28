@@ -4,7 +4,7 @@ import {OverviewComponent} from './overview/overview.component';
 import {MainRoutingModule} from './main-routing.module';
 import {
     MatButtonModule,
-    MatCardModule,
+    MatCardModule, MatFormFieldModule, MatInputModule,
     MatListModule,
     MatRippleModule,
     MatSidenavModule,
@@ -34,7 +34,9 @@ import { MessageComponent } from './message/message.component';
         MatTooltipModule,
         MatListModule,
         MatRippleModule,
-        MatButtonModule
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule
     ]
 })
 export class MainModule
