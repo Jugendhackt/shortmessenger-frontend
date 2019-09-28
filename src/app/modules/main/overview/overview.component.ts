@@ -127,7 +127,7 @@ export class OverviewComponent implements OnInit, OnDestroy
     {
         if(this.values.getSessionStart())
         {
-            this.values.subSnackbar().next('ShortMessenger launched');
+            this.values.subSnackbar().next('Logged in as ' + this.username);
             this.values.endSessionStart();
         }
 

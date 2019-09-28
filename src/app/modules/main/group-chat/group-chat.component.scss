@@ -1,14 +1,25 @@
 .selfsend
 {
-    background: #FF7B51;
+    background: rgb(96, 96, 96);
+
+    width: 75%;
+
+    float: right;
 }
 
 .othersend
 {
+    width: 75%;
 
+    float: left;
 }
 
 .message
 {
     margin-bottom: 1vh;
+}
+
+.accentColor
+{
+    color: #FF7B51;
 }
