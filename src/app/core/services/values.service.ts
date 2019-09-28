@@ -23,6 +23,12 @@ export class ValuesService
     private selectedChatSubject: Subject<void> = new Subject<void>();
     private selectedChat: Chat = null;
 
+    private loggedInSubject: Subject<void> = new Subject<void>();
+    private loggedIn: boolean = false;
+
+    private username: string;
+    private password: string;
+
     private sessionStart: boolean = true;
 
     constructor()
@@ -121,5 +127,41 @@ export class ValuesService
     subSelectedChat(): Subject<void>
     {
         return this.selectedChatSubject;
+    }
+
+    isLoggedIn(): boolean
+    {
+        return this.loggedIn;
+    }
+
+    setLoggedIn(state: boolean): void
+    {
+        this.loggedIn = state;
+        this.loggedInSubject.next();
+    }
+
+    subLoggedIn(): Subject<void>
+    {
+        return this.loggedInSubject;
+    }
+
+    getUsername(): string
+    {
+        return this.username;
+    }
+
+    setUsername(username: string): void
+    {
+        this.username = username;
+    }
+
+    getPassword(): string
+    {
+        return this.password;
+    }
+
+    setPassword(password: string): void
+    {
+        this.password = password;
     }
 }

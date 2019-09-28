@@ -10,16 +10,16 @@ import {Chat} from '../../../core/api/interfaces/Chat.interface';
 })
 export class OverviewComponent implements OnInit, OnDestroy
 {
-    private darkMode: boolean;
-    private sidebarOpen: boolean;
-    private mobile: boolean;
+    darkMode: boolean;
+    sidebarOpen: boolean;
+    mobile: boolean;
 
-    private groups: Array<Chat>;
-    private selectedChat;
+    groups: Array<Chat>;
+    selectedChat;
 
-    private subscriptions: Array<any>;
+    subscriptions: Array<any>;
 
-    private selectFirstGroup: boolean = true;
+    selectFirstGroup: boolean = true;
 
     constructor(private values: ValuesService, private api: Api)
     {
