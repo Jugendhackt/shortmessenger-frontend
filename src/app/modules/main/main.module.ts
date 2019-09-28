@@ -4,11 +4,15 @@ import {OverviewComponent} from './overview/overview.component';
 import {MainRoutingModule} from './main-routing.module';
 import {MatCardModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import {GroupComponent} from './group/group.component';
+import { GroupChatComponent } from './group-chat/group-chat.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
     declarations: [
         OverviewComponent,
-        GroupComponent
+        GroupComponent,
+        GroupChatComponent,
+        MessageComponent
     ],
     exports: [
         OverviewComponent
