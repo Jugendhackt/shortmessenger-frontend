@@ -6,14 +6,16 @@
                     <app-group [chat]="group"></app-group>
                 </div>
             </mat-list>
+
+            <button mat-flat-button (click)="logout()">Logout</button>
         </mat-drawer>
-        <mat-drawer-content>
+        <mat-drawer-content id="chatWindow">
             <div class="routerOutlet">
                 <app-group-chat [chat]="selectedChat"></app-group-chat>
             </div>
 
             <mat-form-field class="input">
-                <input (keydown.enter)="send(inputElement.value); inputElement.value = ''" #inputElement matInput placeholder="Send as 'user'" value="">
+                <input (keydown.enter)="send(inputElement.value); inputElement.value = ''" #inputElement matInput placeholder="Send as {{username}}" value="">
             </mat-form-field>
         </mat-drawer-content>
     </mat-drawer-container>

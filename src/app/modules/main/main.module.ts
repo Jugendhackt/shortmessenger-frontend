@@ -4,7 +4,9 @@ import {OverviewComponent} from './overview/overview.component';
 import {MainRoutingModule} from './main-routing.module';
 import {
     MatButtonModule,
-    MatCardModule, MatFormFieldModule, MatInputModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatListModule,
     MatRippleModule,
     MatSidenavModule,

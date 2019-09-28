@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ValuesService} from '../../../core/services/values.service';
 import {Api} from '../../../core/api/api.service';
 import {Chat} from '../../../core/api/interfaces/Chat.interface';
-import { SortByPipe } from 'src/app/sort.pipe';
 
 @Component({
     selector: 'app-overview',
@@ -20,6 +19,8 @@ export class OverviewComponent implements OnInit, OnDestroy
 
     subscriptions: Array<any>;
 
+    username: string;
+
     selectFirstGroup: boolean = true;
 
     constructor(private values: ValuesService, private api: Api)
@@ -35,6 +36,8 @@ export class OverviewComponent implements OnInit, OnDestroy
 
     ngOnInit(): void
     {
+        this.username = this.values.getUsername();
+
         //Load appearance on init
         this.darkMode = this.values.getDarkMode();
         this.initTheme();
@@ -83,17 +86,27 @@ export class OverviewComponent implements OnInit, OnDestroy
 
             if(this.selectFirstGroup)
             {
-                this.values.setSelectedChat(this.groups.sort((a, b) => {
+                this.values.setSelectedChat(this.groups.sort((a, b) =>
+                {
                     return b.last - a.last;
                 })[0]);
 
-                console.log(this.groups.sort((a, b) => {
+                console.log(this.groups.sort((a, b) =>
+                {
                     return b.last - a.last;
                 }));
 
                 this.selectFirstGroup = false;
             }
         }));
+    }
+
+    logout(): void
+    {
+        this.values.setLoggedIn(false);
+
+        localStorage.clear();
+        localStorage.setItem('loggedIn', String(false));
     }
 
     send(message: string): void

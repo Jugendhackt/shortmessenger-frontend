@@ -81,6 +81,12 @@ export class AppComponent implements OnInit, OnDestroy
                 this.iterateSnackbars();
             }
         }));
+
+        //Subscribe to being logged in
+        this.subscriptions.push(this.values.subLoggedIn().subscribe(() =>
+        {
+            this.loggedIn = this.values.isLoggedIn();
+        }));
     }
 
     iterateSnackbars(): void
