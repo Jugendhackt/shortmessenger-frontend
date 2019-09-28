@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Chat } from './interfaces/Chat.interface';
 import { Observable } from 'rxjs';
+import { Read } from './interfaces/Read.interface';
 
 @Injectable({
 	providedIn: 'root'
@@ -28,7 +29,7 @@ export class Api {
 			.set("username", "admin")
 			.set("password", "admin")
 
-		return this.http.get<Array<Chat>>(this.apiUrl, {params})
+		return this.http.get<Read>(this.apiUrl, {params})
 	}
 
 	send(chatId, message) {
@@ -45,5 +46,14 @@ export class Api {
 		}
 
 		return this.http.post(this.apiUrl, body, {params})
+	}
+
+	info() {
+		var params = new HttpParams()
+			.set("action", "info")
+			.set("username", "admin")
+			.set("password", "admin")
+
+		return this.http.get<User>(this.apiUrl, {params})
 	}
 }
