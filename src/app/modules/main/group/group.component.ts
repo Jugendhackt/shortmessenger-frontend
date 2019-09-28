@@ -34,5 +34,6 @@ export class GroupComponent implements OnInit
     selectChat(): void
     {
         this.values.setSelectedChat(this.chat);
+        document.getElementById("chatWindow")[1].scrollTop = document.querySelectorAll("chatWindow")[1].scrollHeight;
     }
 }

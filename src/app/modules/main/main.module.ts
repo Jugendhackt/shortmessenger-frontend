@@ -14,8 +14,8 @@ import {
     MatTooltipModule
 } from '@angular/material';
 import {GroupComponent} from './group/group.component';
-import {GroupChatComponent} from './group-chat/group-chat.component';
-import {SortByPipe} from 'src/app/sort.pipe';
+import { GroupChatComponent } from './group-chat/group-chat.component';
+import { SortByPipe } from 'src/app/sort.pipe';
 
 @NgModule({
     declarations: [
