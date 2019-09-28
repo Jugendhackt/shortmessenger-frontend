@@ -34,7 +34,13 @@ export class GroupChatComponent implements OnInit
 
         if(diff < 3600000)
         {
-            dString = `${parseInt(String(diff / 60000)).toFixed(0)} minutes ago`;
+            var min = parseInt(String(diff / 60000)).toFixed(0);
+            if(min == "0") {
+                dString = `Just now`;
+            }
+            else {
+                dString = `${min} minutes ago`;
+            }
         }
         else if(diff >= 3600000 && diff < 86400000)
         {
@@ -42,7 +48,13 @@ export class GroupChatComponent implements OnInit
         }
         else
         {
-            dString = `${parseInt(String(diff / 86400000)).toFixed(0)} days ago`;
+            var days = parseInt(parseInt(String(diff / 86400000)).toFixed(0));
+            if (days > 365) {
+                dString = new Date(unix * 1000).toDateString();
+            }
+            else {
+                dString = `${days} days ago`;
+            }
         }
 
         return dString;
