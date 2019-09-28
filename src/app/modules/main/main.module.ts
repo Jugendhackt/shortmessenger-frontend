@@ -2,11 +2,13 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {OverviewComponent} from './overview/overview.component';
 import {MainRoutingModule} from './main-routing.module';
-import {MatCardModule, MatSidenavModule} from '@angular/material';
+import {MatCardModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {GroupComponent} from './group/group.component';
 
 @NgModule({
     declarations: [
-        OverviewComponent
+        OverviewComponent,
+        GroupComponent
     ],
     exports: [
         OverviewComponent
@@ -15,7 +17,8 @@ import {MatCardModule, MatSidenavModule} from '@angular/material';
         CommonModule,
         MainRoutingModule,
         MatSidenavModule,
-        MatCardModule
+        MatCardModule,
+        MatToolbarModule
     ]
 })
 export class MainModule
