@@ -15,7 +15,7 @@ export class OverviewComponent implements OnInit, OnDestroy
     mobile: boolean;
 
     groups: Array<Chat>;
-    selectedChat;
+    selectedChat: Chat;
 
     subscriptions: Array<any>;
 
