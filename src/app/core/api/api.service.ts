@@ -14,6 +14,8 @@ export class Api
 {
     private apiUrl = 'https://jhffm19-shm.nwng.eu/api/index.php';
 
+    private timestamp: number = 0;
+
     constructor(private http: HttpClient, private values: ValuesService)
     {
 
@@ -37,6 +39,8 @@ export class Api
             .set('username', this.values.getUsername())
             .set('password', this.values.getPassword());
 
+        this.timestamp = Date.now();
+
         return this.http.get<Array<Chat>>(this.apiUrl, {params});
     }
 
@@ -47,9 +51,9 @@ export class Api
             .set('username', this.values.getUsername())
             .set('password', this.values.getPassword());
 
-        let body = new FormData()
-            body.append("chatId", chatId)
-            body.append("message", message)
+        let body = new FormData();
+        body.append('chatId', chatId);
+        body.append('message', message);
 
         return this.http.post<Message>(this.apiUrl, body, {params});
     }
@@ -62,5 +66,16 @@ export class Api
             .set('password', this.values.getPassword());
 
         return this.http.get<User>(this.apiUrl, {params});
+    }
+
+    diff(): Observable<any>
+    {
+        let params = new HttpParams()
+            .set('action', 'diff')
+            .set('username', this.values.getUsername())
+            .set('password', this.values.getPassword())
+            .set('timestamp', String(this.timestamp / 1000));
+
+        return this.http.get(this.apiUrl, {params});
     }
 }

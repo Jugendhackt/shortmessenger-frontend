@@ -17,10 +17,11 @@ export class GroupComponent implements OnInit
 
     ngOnInit(): void
     {
-        document.getElementById("chatWindow").scrollTop = Number.MAX_SAFE_INTEGER;
+        document.getElementById('chatWindow').scrollTop = Number.MAX_SAFE_INTEGER;
 
-        setTimeout(() => {
-            document.getElementById("chatWindow").scrollTop = Number.MAX_SAFE_INTEGER;
+        setTimeout(() =>
+        {
+            document.getElementById('chatWindow').scrollTop = Number.MAX_SAFE_INTEGER;
         }, 50);
     }
 
@@ -30,7 +31,7 @@ export class GroupComponent implements OnInit
 
         this.chat.users.forEach((user) =>
         {
-            output = output.concat(user + ", ");
+            output = output.concat(user + ', ');
         });
 
         return output.substring(0, output.length - 2);
@@ -39,10 +40,11 @@ export class GroupComponent implements OnInit
     selectChat(): void
     {
         this.values.setSelectedChat(this.chat);
-        document.getElementById("chatWindow").scrollTop = Number.MAX_SAFE_INTEGER;
+        document.getElementById('chatWindow').scrollTop = Number.MAX_SAFE_INTEGER;
 
-        setTimeout(() => {
-            document.getElementById("chatWindow").scrollTop = Number.MAX_SAFE_INTEGER;
+        setTimeout(() =>
+        {
+            document.getElementById('chatWindow').scrollTop = Number.MAX_SAFE_INTEGER;
         }, 50);
     }
 }

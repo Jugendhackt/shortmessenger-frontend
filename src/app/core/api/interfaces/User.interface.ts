@@ -1,5 +1,6 @@
-import { Base } from './Base.interface';
+import {Base} from './Base.interface';
 
-export interface User extends Base {
+export interface User extends Base
+{
     name: string
 }

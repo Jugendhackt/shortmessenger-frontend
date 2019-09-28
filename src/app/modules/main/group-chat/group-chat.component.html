@@ -2,7 +2,8 @@
     <div *ngIf="isMessageUser(message)">
         <mat-card class="message selfsend">
             <mat-card-subtitle>
-                <span class="accentColor">{{message.sender}} (you)</span><span style="float:right;">{{unixTimeCodeFormatter(message.time)}}</span>
+                <span class="accentColor">{{message.sender}} (you)</span><span
+                    style="float:right;">{{unixTimeCodeFormatter(message.time)}}</span>
             </mat-card-subtitle>
             <mat-card-title>
                 {{message.content}}
@@ -12,7 +13,8 @@
     <div *ngIf="!isMessageUser(message)">
         <mat-card class="message othersend">
             <mat-card-subtitle>
-                <span class="accentColor">{{message.sender}}</span><span style="float:right;">{{unixTimeCodeFormatter(message.time)}}</span>
+                <span class="accentColor">{{message.sender}}</span><span
+                    style="float:right;">{{unixTimeCodeFormatter(message.time)}}</span>
             </mat-card-subtitle>
             <mat-card-title>
                 {{message.content}}

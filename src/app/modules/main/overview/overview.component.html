@@ -16,7 +16,8 @@
 
             <mat-form-field class="input">
                 <mat-toolbar>
-                    <input (keydown.enter)="send(inputElement.value); inputElement.value = ''" #inputElement matInput placeholder="Send as {{username}}" value="" autocomplete="off">
+                    <input (keydown.enter)="send(inputElement.value); inputElement.value = ''" #inputElement matInput
+                           placeholder="Send as {{username}}" value="" autocomplete="off">
                 </mat-toolbar>
             </mat-form-field>
         </mat-drawer-content>

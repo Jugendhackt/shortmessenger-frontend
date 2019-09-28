@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ValuesService} from '../../../core/services/values.service';
 import {Api} from '../../../core/api/api.service';
 import {Chat} from '../../../core/api/interfaces/Chat.interface';
+import {interval} from 'rxjs';
 
 @Component({
     selector: 'app-overview',
@@ -91,13 +92,36 @@ export class OverviewComponent implements OnInit, OnDestroy
                     return b.last - a.last;
                 })[0]);
 
-                console.log(this.groups.sort((a, b) =>
-                {
-                    return b.last - a.last;
-                }));
+                /*console.log(this.groups.sort((a, b) =>
+                 {
+                 return b.last - a.last;
+                 }));*/
 
                 this.selectFirstGroup = false;
             }
+        }));
+
+        //Chat refresh lifeclyle
+        this.subscriptions.push(interval(1000).subscribe(val =>
+        {
+            this.subscriptions.push(this.api.diff().subscribe((value =>
+            {
+                if(value.result)
+                {
+                    this.subscriptions.push(this.api.read().subscribe(array =>
+                    {
+                        this.groups = array;
+
+                        this.groups.forEach((group) =>
+                        {
+                            if(group.name == this.selectedChat.name)
+                            {
+                                this.selectedChat = group;
+                            }
+                        });
+                    }));
+                }
+            })));
         }));
     }
 
