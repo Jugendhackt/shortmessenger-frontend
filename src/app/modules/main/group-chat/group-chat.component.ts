@@ -80,4 +80,8 @@ export class GroupChatComponent implements OnInit
             return '<a href="' + url + '" target="_blank">' + url + '</a>';
         });
     }
+
+    addMentionToMessage(name:string) {
+        (<HTMLInputElement> document.querySelectorAll("mat-toolbar input")[0]).value += "@" + name;
+    }
 }

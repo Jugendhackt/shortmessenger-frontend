@@ -6,7 +6,7 @@ import {CoreModule} from './core/core.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {MainModule} from './modules/main/main.module';
-import {MatButtonModule, MatSnackBar, MatSnackBarModule} from '@angular/material';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -18,8 +18,7 @@ import {MatButtonModule, MatSnackBar, MatSnackBarModule} from '@angular/material
         BrowserAnimationsModule,
         RouterModule,
         MainModule,
-        MatSnackBarModule,
-        MatButtonModule
+        MatSnackBarModule
     ],
     providers: [
         MatSnackBar
