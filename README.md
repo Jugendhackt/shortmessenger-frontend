@@ -1,3 +1,5 @@
+[![Jugend Hackt 2019](https://nschroetler.de/jhbadge/?evt=ffm)](https://media.ccc.de/)
+
 # ShortmessengerFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
