@@ -18,7 +18,6 @@
                 <span class="messageSender accentColor"
                       (click)="addMentionToMessage(message.sender)">{{message.sender}}</span><span
                     style="float: right;">
-                {{unixTimeCodeFormatter(message.time)}}
             </span>
             </mat-card-subtitle>
             <mat-card-title [innerHTML]=processMessage(message.content)></mat-card-title>

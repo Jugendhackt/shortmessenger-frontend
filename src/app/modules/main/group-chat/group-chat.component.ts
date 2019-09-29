@@ -81,7 +81,9 @@ export class GroupChatComponent implements OnInit
         });
     }
 
-    addMentionToMessage(name:string) {
-        (<HTMLInputElement> document.querySelectorAll("mat-toolbar input")[0]).value += "@" + name;
+    addMentionToMessage(name: string)
+    {
+        (<HTMLInputElement> document.querySelectorAll('mat-toolbar input')[0]).value += '@' + name + ' ';
+        (<HTMLInputElement> document.querySelectorAll('mat-toolbar input')[0]).focus();
     }
 }
