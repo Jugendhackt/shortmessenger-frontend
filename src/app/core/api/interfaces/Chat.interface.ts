@@ -1,5 +1,6 @@
 import {Base} from './Base.interface';
 import {Message} from './Message.interface';
+import {Filter} from './Filter.interface';
 
 export interface Chat extends Base
 {
@@ -9,4 +10,5 @@ export interface Chat extends Base
     img: string
     users: Array<string>
     last: number
+    filters: Filter
 }

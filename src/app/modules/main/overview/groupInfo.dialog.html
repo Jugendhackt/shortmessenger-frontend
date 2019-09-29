@@ -1,8 +1,19 @@
 <mat-dialog-content class="groupInfoDialog">
     <img src="{{selectedChat.img}}" class="groupImg">
-    <h2>{{selectedChat.name}}</h2>
-    <h3>{{getNames()}}</h3>
-    <ul>
-        <li></li>
+    <h2 style="margin-bottom: -15px">{{selectedChat.name}}</h2>
+    <h3 style="font-weight: normal">{{getNames()}}</h3>
+    <ul class="filters">
+        <li title="URL Filter">
+            <mat-icon aria-hidden="false" aria-label="URL Filter" [class.isNotActive]="selectedChat.filters.allowURLs">link</mat-icon>
+        </li>
+        <li title="Emoji Filter">
+            <mat-icon aria-hidden="false" aria-label="Emoji Filter" [class.isNotActive]="selectedChat.filters.allowEmoji">tag_faces</mat-icon>
+        </li>
+        <li title="Monolog Filter">
+            <mat-icon aria-hidden="false" aria-label="Monolog Filter" [class.isNotActive]="!selectedChat.filters.disallowMonologue">chat_bubble</mat-icon>
+        </li>
+        <li title="Time Filter">
+            <mat-icon aria-hidden="false" aria-label="Zeit Filter" [class.isNotActive]="selectedChat.filters.timeRules.length == 0">access_time</mat-icon>
+        </li>
     </ul>
 </mat-dialog-content>

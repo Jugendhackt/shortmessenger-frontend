@@ -1,8 +1,7 @@
 export interface Filter
 {
-    minTime: number,
-    maxTime: number,
+    allowURLs: boolean,
     allowEmoji: boolean,
-    allowPictures: boolean,
-    allowSpeech: boolean
+    disallowMonologue: boolean,
+    timeRules: Array<string>
 }

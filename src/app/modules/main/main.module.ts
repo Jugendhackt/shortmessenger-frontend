@@ -11,7 +11,8 @@ import {
     MatRippleModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatIconModule
 } from '@angular/material';
 import {GroupComponent} from './group/group.component';
 import {GroupChatComponent} from './group-chat/group-chat.component';
@@ -44,7 +45,8 @@ import {DeviceDetectorModule} from 'ngx-device-detector';
         MatInputModule,
         FormsModule,
         MatDialogModule,
-        DeviceDetectorModule.forRoot()
+        DeviceDetectorModule.forRoot(),
+        MatIconModule
     ],
     providers:
     [
