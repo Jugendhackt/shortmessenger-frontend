@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ValuesService} from '../../../core/services/values.service';
 import {Api} from '../../../core/api/api.service';
 import {Chat} from '../../../core/api/interfaces/Chat.interface';
+import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material';
 import {interval} from 'rxjs';
 
 @Component({
@@ -15,7 +16,22 @@ export class OverviewComponent implements OnInit, OnDestroy
     sidebarOpen: boolean;
     mobile: boolean;
 
-    groups: Array<Chat>;
+    groups: Array<Chat> = [{
+        id: 'loading',
+        name: 'loading',
+        messages: [{
+            sender: 'networkException',
+            content: 'Das Jugendhackt FFM 2019 Internet in a nutshell',
+            time: (new Date().getDate() * 1000),
+            error: false,
+            errormsg: ''
+        }],
+        users: ['networkException', 'Niklas Schrötler', 'NWNG'],
+        last: (new Date().getDate() * 1000),
+        errormsg: '',
+        error: false
+    }];
+
     selectedChat: Chat;
 
     subscriptions: Array<any>;
@@ -24,15 +40,23 @@ export class OverviewComponent implements OnInit, OnDestroy
 
     selectFirstGroup: boolean = true;
 
-    constructor(private values: ValuesService, private api: Api)
+    constructor(private values: ValuesService, private api: Api, private dialog: MatDialog)
     {
         this.darkMode = false;
         this.sidebarOpen = true;
         this.mobile = false;
 
-        this.selectedChat = null;
-
         this.subscriptions = new Array<any>();
+    }
+
+    openDialog(): void
+    {
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+
+        this.dialog.open(GroupInfoDialog, dialogConfig);
     }
 
     ngOnInit(): void
@@ -80,6 +104,7 @@ export class OverviewComponent implements OnInit, OnDestroy
             this.selectedChat = this.values.getSelectedChat();
         }));
 
+
         //Subscribe to api response
         this.subscriptions.push(this.api.read().subscribe((array) =>
         {
@@ -95,33 +120,38 @@ export class OverviewComponent implements OnInit, OnDestroy
                 /*console.log(this.groups.sort((a, b) =>
                  {
                  return b.last - a.last;
+                 }));
+
+                 this.selectFirstGroup = false;
+                 }
                  }));*/
 
-                this.selectFirstGroup = false;
-            }
-        }));
-
-        //Chat refresh lifecycle
-        this.subscriptions.push(interval(1000).subscribe(() =>
-        {
-            this.subscriptions.push(this.api.diff().subscribe((value =>
-            {
-                if(value.result)
+                //Chat refresh lifecycle
+                this.subscriptions.push(interval(1000).subscribe(() =>
                 {
-                    this.subscriptions.push(this.api.read().subscribe(array =>
+                    this.subscriptions.push(this.api.diff().subscribe((value =>
                     {
-                        this.groups = array;
-
-                        this.groups.forEach((group) =>
+                        if(value.result)
                         {
-                            if(group.name == this.selectedChat.name)
+                            this.subscriptions.push(this.api.read().subscribe(array =>
                             {
-                                this.selectedChat = group;
-                            }
-                        });
-                    }));
-                }
-            })));
+                                this.groups = array;
+
+                                this.groups.forEach((group) =>
+                                {
+                                    if(group.name == this.selectedChat.name)
+                                    {
+                                        if(group != null)
+                                        {
+                                            this.values.setSelectedChat(group);
+                                        }
+                                    }
+                                });
+                            }));
+                        }
+                    })));
+                }));
+            }
         }));
     }
 
@@ -136,9 +166,11 @@ export class OverviewComponent implements OnInit, OnDestroy
     send(message: string): void
     {
         console.log(message);
-        this.api.send(this.selectedChat.id, message).subscribe(value => {
+        this.api.send(this.selectedChat.id, message).subscribe(value =>
+        {
             console.log(value);
-            if(value.error) {
+            if(value.error)
+            {
                 this.values.subSnackbar().next(value.errormsg);
             }
         });
@@ -225,5 +257,46 @@ export class OverviewComponent implements OnInit, OnDestroy
 
             console.log('Updated theme to lightMode');
         }
+    }
+}
+
+@Component({
+    selector: 'groupInfoDialog',
+    templateUrl: 'groupInfo.dialog.html',
+    styleUrls: ['./groupInfo.dialog.scss'],
+})
+export class GroupInfoDialog implements OnInit, OnDestroy
+{
+    selectedChat: Chat;
+
+    private subscriptions: Array<any> = new Array<any>();
+
+    constructor(private dialogRef: MatDialogRef<GroupInfoDialog>, private values: ValuesService)
+    {
+    }
+
+    ngOnInit(): void
+    {
+        this.selectedChat = this.values.getSelectedChat();
+
+        console.log(this.selectedChat);
+
+        this.subscriptions.push(this.values.subSelectedChat().subscribe(() =>
+        {
+            this.selectedChat = this.values.getSelectedChat();
+        }));
+    }
+
+    ngOnDestroy(): void
+    {
+        this.subscriptions.forEach((element) =>
+        {
+            element.unsubscribe();
+        });
+    }
+
+    onNoClick(): void
+    {
+        this.dialogRef.close();
     }
 }

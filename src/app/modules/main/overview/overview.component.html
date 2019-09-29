@@ -2,7 +2,7 @@
 <div id="themeContainer">
     <mat-drawer-container autosize>
         <mat-drawer [mode]="mobile ? 'over' : 'side'" [opened]="sidebarOpen">
-            <mat-list>
+            <mat-list class="sidebar">
                 <div *ngFor="let group of groups | sortBy:'desc': 'last'">
                     <app-group [chat]="group"></app-group>
                 </div>
@@ -18,6 +18,8 @@
                 <mat-card-subtitle>
                     {{formattedNames()}}
                 </mat-card-subtitle>
+
+                <button mat-flat-button (click)="this.openDialog();" style="float: right">Group Info</button>
             </mat-card>
 
             <div class="chats">

@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
+import {InjectionToken, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {OverviewComponent} from './overview/overview.component';
+import {GroupInfoDialog, OverviewComponent} from './overview/overview.component';
 import {MainRoutingModule} from './main-routing.module';
 import {
     MatButtonModule,
-    MatCardModule,
+    MatCardModule, MatDialog, MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
@@ -16,13 +16,15 @@ import {
 import {GroupComponent} from './group/group.component';
 import {GroupChatComponent} from './group-chat/group-chat.component';
 import {SortByPipe} from 'src/app/sort.pipe';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
         OverviewComponent,
         GroupComponent,
         GroupChatComponent,
-        SortByPipe
+        SortByPipe,
+        GroupInfoDialog
     ],
     exports: [
         OverviewComponent
@@ -38,7 +40,17 @@ import {SortByPipe} from 'src/app/sort.pipe';
         MatRippleModule,
         MatButtonModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        FormsModule,
+        MatDialogModule
+    ],
+    providers:
+    [
+        MatDialog
+    ],
+    entryComponents:
+    [
+        GroupInfoDialog
     ]
 })
 export class MainModule

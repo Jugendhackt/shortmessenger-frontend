@@ -21,7 +21,21 @@ export class ValuesService
     private noSelectSubject: Subject<void> = new Subject<void>();
 
     private selectedChatSubject: Subject<void> = new Subject<void>();
-    private selectedChat: Chat = null;
+    private selectedChat: Chat = {
+        id: 'loading',
+        name: 'loading',
+        messages: [{
+            sender: 'networkException',
+            content: 'Das Jugendhackt FFM 2019 Internet in a nutshell',
+            time: (new Date().getDate() * 1000),
+            error: false,
+            errormsg: ''
+        }],
+        users: ['networkException', 'Niklas Schrötler', 'NWNG'],
+        last: (new Date().getDate() * 1000),
+        errormsg: '',
+        error: false
+    };;
 
     private loggedInSubject: Subject<void> = new Subject<void>();
     private loggedIn: boolean = false;
