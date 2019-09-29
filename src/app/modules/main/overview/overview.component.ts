@@ -31,7 +31,13 @@ export class OverviewComponent implements OnInit, OnDestroy
         last: (new Date().getDate() * 1000),
         errormsg: '',
         error: false,
-        img: ''
+        img: '',
+        filters: {
+            allowEmoji: true,
+            allowURLs: true,
+            disallowMonologue: false,
+            timeRules: []
+        }
     }];
 
     selectedChat: Chat;

@@ -5,11 +5,12 @@
             <mat-list class="sidebar">
                 <img src="../../../../assets/img/Loop.png" width="120px">
                 <div *ngFor="let group of groups | sortBy:'desc': 'last'">
-                    <app-group [chat]="group"></app-group>
+                    <app-group [chat]="group" class="sidenavChat"></app-group>
                 </div>
             </mat-list>
 
-            <button mat-flat-button (click)="logout()" id="logoutBtn">Logout</button>
+            <button mat-flat-button class="createGroupBtn">Create group</button>
+            <button mat-flat-button (click)="logout()" class="logoutBtn">Logout</button>
         </mat-drawer>
         <mat-drawer-content id="chatWindow">
             <mat-card class="header">
