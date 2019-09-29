@@ -1,6 +1,6 @@
 <mat-dialog-content class="groupInfoDialog">
-    <img src="{{selectedChat.img}}" class="groupImg">
-    <h2 style="margin-bottom: -15px">{{selectedChat.name}}</h2>
+    <img src="{{selectedChat.img}}" (error)="selectedChat.img = 'https://pbs.twimg.com/profile_images/915207861638230016/8toUkhtU_400x400.jpg'" class="groupImg">
+    <h2 style="margin-bottom: -15px">{{selectedChat.name}} <span style="color: lightgray">({{selectedChat.id}})</span></h2>
     <h3 style="font-weight: normal">{{getNames()}}</h3>
     <ul class="filters">
         <li title="URL Filter">
