@@ -64,19 +64,20 @@ export class GroupChatComponent implements OnInit
         return dString;
     }
 
-    processMessage(msg:string):string {
-        msg = msg.replace(new RegExp('@' + this.values.getUsername(), 'g'), '<i>@' + this.values.getUsername() +'</i>');
-        msg = msg.replace(new RegExp('@everyone', 'g'), '<mention>@everyone</mention>');
-        return this.urlify(msg);        
+    processMessage(msg: string): string
+    {
+        msg = msg.replace(new RegExp('@' + this.values.getUsername(), 'g'), '<i>@' + this.values.getUsername() + '</i>');
+        msg = msg.replace(new RegExp('@everyone', 'g'), '<i>@everyone</i>');
+
+        return this.urlify(msg);
     }
 
     private urlify(text: string): string
     {
-        var urlRegex = /(https?:\/\/[^\s]+)/g;
-        return text.replace(urlRegex, function(url) {
+        let urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, function(url)
+        {
             return '<a href="' + url + '" target="_blank">' + url + '</a>';
-        })
-        // or alternatively
-        // return text.replace(urlRegex, '<a href="$1">$1</a>')
+        });
     }
 }

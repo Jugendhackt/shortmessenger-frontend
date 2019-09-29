@@ -101,8 +101,8 @@ export class OverviewComponent implements OnInit, OnDestroy
             }
         }));
 
-        //Chat refresh lifeclyle
-        this.subscriptions.push(interval(1000).subscribe(val =>
+        //Chat refresh lifecycle
+        this.subscriptions.push(interval(1000).subscribe(() =>
         {
             this.subscriptions.push(this.api.diff().subscribe((value =>
             {
@@ -135,7 +135,6 @@ export class OverviewComponent implements OnInit, OnDestroy
 
     send(message: string): void
     {
-        console.log(message);
         this.api.send(this.selectedChat.id, message).subscribe(value => console.log(value));
     }
 
@@ -145,6 +144,46 @@ export class OverviewComponent implements OnInit, OnDestroy
         {
             element.unsubscribe();
         });
+    }
+
+    formattedNames(): string
+    {
+        let output = '';
+
+        let once: boolean = true;
+        let moreThen3: boolean = false;
+
+        this.selectedChat.users.forEach((user, count) =>
+        {
+            if(count < 4)
+            {
+                output = output.concat(user + ', ');
+            }
+            else
+            {
+                moreThen3 = true;
+
+                if(once)
+                {
+                    output = output.substring(0, output.length - 2);
+                    output = output.concat(' and ' + (this.selectedChat.users.length - 4) + ' more');
+
+                    once = false;
+                }
+            }
+        });
+
+        if(!moreThen3)
+        {
+            output = output.substring(0, output.length - 2);
+        }
+
+        if(output == '')
+        {
+            output = 'No users';
+        }
+
+        return output;
     }
 
     initTheme(): void

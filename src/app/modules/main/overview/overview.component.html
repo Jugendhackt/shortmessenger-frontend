@@ -10,11 +10,20 @@
             <button mat-flat-button (click)="logout()">Logout</button>
         </mat-drawer>
         <mat-drawer-content id="chatWindow">
-            <div class="routerOutlet">
+            <mat-card class="header">
+                <mat-card-title>
+                    {{selectedChat.name}}
+                </mat-card-title>
+                <mat-card-subtitle>
+                    {{formattedNames()}}
+                </mat-card-subtitle>
+            </mat-card>
+
+            <div class="chats">
                 <app-group-chat [chat]="selectedChat"></app-group-chat>
             </div>
 
-            <mat-form-field class="input">
+            <mat-form-field class="footer">
                 <mat-toolbar>
                     <input (keydown.enter)="send(inputElement.value); inputElement.value = ''" #inputElement matInput
                            placeholder="Send as {{username}}" value="" autocomplete="off">
