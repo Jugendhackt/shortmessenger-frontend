@@ -35,7 +35,7 @@ export class ValuesService
         last: (new Date().getDate() * 1000),
         errormsg: '',
         error: false
-    };;
+    };
 
     private loggedInSubject: Subject<void> = new Subject<void>();
     private loggedIn: boolean = false;

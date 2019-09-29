@@ -17,6 +17,7 @@ import {GroupComponent} from './group/group.component';
 import {GroupChatComponent} from './group-chat/group-chat.component';
 import {SortByPipe} from 'src/app/sort.pipe';
 import {FormsModule} from '@angular/forms';
+import {DeviceDetectorModule} from 'ngx-device-detector';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import {FormsModule} from '@angular/forms';
         MatFormFieldModule,
         MatInputModule,
         FormsModule,
-        MatDialogModule
+        MatDialogModule,
+        DeviceDetectorModule.forRoot()
     ],
     providers:
     [
