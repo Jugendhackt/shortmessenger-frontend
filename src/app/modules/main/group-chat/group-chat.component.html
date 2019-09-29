@@ -2,15 +2,24 @@
     <div *ngIf="isMessageUser(message)">
         <mat-card class="message selfsend">
             <mat-card-subtitle>
-                <span class="accentColor">{{message.sender}} (you)</span><span style="float:right;">{{unixTimeCodeFormatter(message.time)}}</span>
+                <span class="accentColor">{{message.sender}} (you)</span><span
+                    style="float:right;">{{unixTimeCodeFormatter(message.time)}}</span>
             </mat-card-subtitle>
             <mat-card-title [innerHTML]=processMessage(message.content)></mat-card-title>
         </mat-card>
     </div>
+
     <div *ngIf="!isMessageUser(message)">
         <mat-card class="message othersend">
             <mat-card-subtitle>
-                <span class="accentColor">{{message.sender}}</span><span style="float:right;">{{unixTimeCodeFormatter(message.time)}}</span>
+                <span style="float: right;">
+                    {{unixTimeCodeFormatter(message.time)}}
+                </span>
+                <span class="messageSender accentColor"
+                      (click)="addMentionToMessage(message.sender)">{{message.sender}}</span><span
+                    style="float: right;">
+                {{unixTimeCodeFormatter(message.time)}}
+            </span>
             </mat-card-subtitle>
             <mat-card-title [innerHTML]=processMessage(message.content)></mat-card-title>
         </mat-card>
