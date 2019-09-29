@@ -4,6 +4,7 @@ import {Api} from '../../../core/api/api.service';
 import {Chat} from '../../../core/api/interfaces/Chat.interface';
 import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material';
 import {interval} from 'rxjs';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
     selector: 'app-overview',
@@ -40,13 +41,20 @@ export class OverviewComponent implements OnInit, OnDestroy
 
     selectFirstGroup: boolean = true;
 
-    constructor(private values: ValuesService, private api: Api, private dialog: MatDialog)
+    constructor(private values: ValuesService, private api: Api, private dialog: MatDialog, private deviceService: DeviceDetectorService)
     {
         this.darkMode = false;
         this.sidebarOpen = true;
         this.mobile = false;
 
         this.subscriptions = new Array<any>();
+    }
+
+    showSidenav(): void
+    {
+        this.values.setSidebarOpen(true);
+
+        console.log(this.sidebarOpen)
     }
 
     openDialog(): void
@@ -59,8 +67,15 @@ export class OverviewComponent implements OnInit, OnDestroy
         this.dialog.open(GroupInfoDialog, dialogConfig);
     }
 
+    closedSidenav(): void
+    {
+        this.values.setSidebarOpen(false)
+    }
+
     ngOnInit(): void
     {
+        this.values.setMobile(this.deviceService.isMobile());
+
         this.username = this.values.getUsername();
 
         //Load appearance on init
@@ -278,8 +293,6 @@ export class GroupInfoDialog implements OnInit, OnDestroy
     ngOnInit(): void
     {
         this.selectedChat = this.values.getSelectedChat();
-
-        console.log(this.selectedChat);
 
         this.subscriptions.push(this.values.subSelectedChat().subscribe(() =>
         {
