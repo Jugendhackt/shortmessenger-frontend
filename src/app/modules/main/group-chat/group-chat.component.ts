@@ -66,6 +66,7 @@ export class GroupChatComponent implements OnInit
 
     processMessage(msg: string): string
     {
+        msg = this.escapeHtml(msg);
         msg = msg.replace(new RegExp('@' + this.values.getUsername(), 'g'), '<i>@' + this.values.getUsername() + '</i>');
         msg = msg.replace(new RegExp('@everyone', 'g'), '<i>@everyone</i>');
 
@@ -86,4 +87,13 @@ export class GroupChatComponent implements OnInit
         (<HTMLInputElement> document.querySelectorAll('mat-toolbar input')[0]).value += '@' + name + ' ';
         (<HTMLInputElement> document.querySelectorAll('mat-toolbar input')[0]).focus();
     }
+
+    escapeHtml(unsafe) {
+        return unsafe
+             .replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
+     }
 }

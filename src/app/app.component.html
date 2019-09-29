@@ -1,14 +1,16 @@
 <app-overview *ngIf="loggedIn"></app-overview>
 
-<div *ngIf="!loggedIn">
+<div *ngIf="!loggedIn" class="loginWrapper">
     <form>
-        <label for="username">Username:
-            <input id="username" name="username">
-        </label>
-        <label for="password">Password:
-            <input id="password" name="password">
+        <label for="username" id="usernameInput">Username:
+            <input class="inputs" id="username" name="username">
+        </label><br>
+        <label for="password" id="passwordInput">Password:
+            <input class="inputs" id="password" name="password" type="password">
         </label>
     </form>
-
-    <button mat-flat-button (click)="login()">Login</button>
+    <br>
+    <div id="loginButtonWrapper">
+        <button mat-flat-button (click)="login()" id="loginSendButton">Login</button>
+    </div>
 </div>
