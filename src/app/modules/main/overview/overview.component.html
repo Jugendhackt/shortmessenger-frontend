@@ -3,6 +3,7 @@
     <mat-drawer-container autosize>
         <mat-drawer [mode]="mobile ? 'over' : 'side'" [opened]="sidebarOpen" (closed)="closedSidenav()">
             <mat-list class="sidebar">
+                <img src="../../../../assets/img/Loop.png" width="120px">
                 <div *ngFor="let group of groups | sortBy:'desc': 'last'">
                     <app-group [chat]="group"></app-group>
                 </div>
