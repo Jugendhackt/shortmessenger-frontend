@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ValuesService} from '../../../core/services/values.service';
 import {Api} from '../../../core/api/api.service';
 import {Chat} from '../../../core/api/interfaces/Chat.interface';
+import {interval} from 'rxjs';
 
 @Component({
     selector: 'app-overview',
@@ -91,13 +92,36 @@ export class OverviewComponent implements OnInit, OnDestroy
                     return b.last - a.last;
                 })[0]);
 
-                console.log(this.groups.sort((a, b) =>
-                {
-                    return b.last - a.last;
-                }));
+                /*console.log(this.groups.sort((a, b) =>
+                 {
+                 return b.last - a.last;
+                 }));*/
 
                 this.selectFirstGroup = false;
             }
+        }));
+
+        //Chat refresh lifecycle
+        this.subscriptions.push(interval(1000).subscribe(() =>
+        {
+            this.subscriptions.push(this.api.diff().subscribe((value =>
+            {
+                if(value.result)
+                {
+                    this.subscriptions.push(this.api.read().subscribe(array =>
+                    {
+                        this.groups = array;
+
+                        this.groups.forEach((group) =>
+                        {
+                            if(group.name == this.selectedChat.name)
+                            {
+                                this.selectedChat = group;
+                            }
+                        });
+                    }));
+                }
+            })));
         }));
     }
 
@@ -126,6 +150,46 @@ export class OverviewComponent implements OnInit, OnDestroy
         {
             element.unsubscribe();
         });
+    }
+
+    formattedNames(): string
+    {
+        let output = '';
+
+        let once: boolean = true;
+        let moreThen3: boolean = false;
+
+        this.selectedChat.users.forEach((user, count) =>
+        {
+            if(count < 4)
+            {
+                output = output.concat(user + ', ');
+            }
+            else
+            {
+                moreThen3 = true;
+
+                if(once)
+                {
+                    output = output.substring(0, output.length - 2);
+                    output = output.concat(' and ' + (this.selectedChat.users.length - 4) + ' more');
+
+                    once = false;
+                }
+            }
+        });
+
+        if(!moreThen3)
+        {
+            output = output.substring(0, output.length - 2);
+        }
+
+        if(output == '')
+        {
+            output = 'No users';
+        }
+
+        return output;
     }
 
     initTheme(): void
