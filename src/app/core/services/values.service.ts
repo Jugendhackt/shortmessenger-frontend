@@ -34,7 +34,8 @@ export class ValuesService
         users: ['networkException', 'Niklas Schrötler', 'NWNG'],
         last: (new Date().getDate() * 1000),
         errormsg: '',
-        error: false
+        error: false,
+        img: ''
     };
 
     private loggedInSubject: Subject<void> = new Subject<void>();

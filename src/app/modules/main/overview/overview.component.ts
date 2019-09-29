@@ -30,7 +30,8 @@ export class OverviewComponent implements OnInit, OnDestroy
         users: ['networkException', 'Niklas Schrötler', 'NWNG'],
         last: (new Date().getDate() * 1000),
         errormsg: '',
-        error: false
+        error: false,
+        img: ''
     }];
 
     selectedChat: Chat;
@@ -288,6 +289,28 @@ export class GroupInfoDialog implements OnInit, OnDestroy
 
     constructor(private dialogRef: MatDialogRef<GroupInfoDialog>, private values: ValuesService)
     {
+    }
+
+    getNames(): string
+    {
+        let output = '';
+
+        let once: boolean = true;
+        let moreThen3: boolean = false;
+
+        this.selectedChat.users.forEach((user) =>
+        {
+            output = output.concat(user + ', ');
+        });
+
+        output = output.substring(0, output.length - 2);
+
+        if(output == '')
+        {
+            output = 'No users';
+        }
+
+        return output;
     }
 
     ngOnInit(): void
