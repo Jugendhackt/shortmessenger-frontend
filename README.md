@@ -2,9 +2,9 @@
 [![Jugend Hackt 2019](https://nschroetler.de/jhbadge/?evt=ffm)](https://media.ccc.de/)
 
 Dies ist ein Projekt von JugendHackt Frankfurt 2019.
-Ein kurzes Vorstellungsvideo finden Sie [hier](https://media.ccc.de/v/jh-ffm-2019-1005-short_messenger)
+Ein kurzes Vorstellungsvideo finden Sie [hier](https://media.ccc.de/v/jh-ffm-2019-1005-short_messenger).
 
-Das Backend finden Sie [hier](https://github.com/Jugendhackt/shortmessenger-backend)
+Das Backend finden Sie [hier](https://github.com/Jugendhackt/shortmessenger-backend).
 
 # Angular Info
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
